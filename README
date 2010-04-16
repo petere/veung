@@ -1,0 +1,15 @@
+VEUNG -- visual explain uber-next generation
+============================================
+
+This program converts a PostgreSQL explain output in JSON format into
+a graph and optionally displays it.  The input is accepted on standard
+input or from a file named as argument.  Without arguments, it
+displays the graph using dotty.  A typical use would be to call it
+from within psql like
+
+\a\t
+EXPLAIN (FORMAT JSON) SELECT ... \g |veung
+
+
+Needs graphviz, pygraphviz, and simplejson (unless using Python 2.6 or
+later).
