@@ -40,7 +40,7 @@ def main():
         infile = sys.stdin
     plan = (json.loads(infile.read()))[0]['Plan']
 
-    graph = pygraphviz.AGraph(directed = True, name = 'Plan')
+    graph = pygraphviz.AGraph(directed = True, name = 'Plan', ordering = 'out')
     tree_walker(graph, plan)
 
     if options.output:
