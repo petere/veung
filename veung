@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2010 Peter Eisentraut
+# Copyright (c) 2012 Peter Eisentraut
 # See LICENSE file for conditions.
 
 """VEUNG -- visual explain uber-next generation -- converts a
