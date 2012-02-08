@@ -31,7 +31,7 @@ def main():
     """Main function"""
     optparser = optparse.OptionParser(description = DESCRIPTION)
     optparser.add_option('-o', '--output', dest = 'output', metavar='FILE',
-                         help = 'write output to FILE')
+                         help = 'write output to FILE, - for standard output')
     (options, args) = optparser.parse_args()
 
     if len(args) > 0:

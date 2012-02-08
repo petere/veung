@@ -10,6 +10,11 @@ from within psql like
 \a\t
 EXPLAIN (FORMAT JSON) SELECT ... \g |veung
 
+The -o option directs the graph in Graphviz (.dot) language to a file
+or to the standard output.  Here is an example calling veung from a
+shell script:
 
-Needs graphviz, pygraphviz, and simplejson (unless using Python 2.6 or
-later).
+psql -d ... -At -c 'EXPLAIN (FORMAT JSON) SELECT ...' | veung -o - | dot -T png -o plan.png
+
+It needs the graphviz package and the Python modules pygraphviz and
+simplejson (unless using Python 2.6 or later).
