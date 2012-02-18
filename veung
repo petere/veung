@@ -38,7 +38,13 @@ def main():
         infile = open(args[0])
     else:
         infile = sys.stdin
-    plan = (json.loads(infile.read()))[0]['Plan']
+    data = json.loads(infile.read())
+    if isinstance(data, list):
+        # SQL explain
+        plan = data[0]['Plan']
+    else:
+        # auto_explain
+        plan = data['Plan']
 
     graph = pygraphviz.AGraph(directed = True, name = 'Plan', ordering = 'out')
     tree_walker(graph, plan)
