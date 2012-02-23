@@ -68,7 +68,7 @@ def tree_walker(graph, plan, node_name = None, penwidth_ratio = None):
     """Takes subtree represented by plan and add necessary nodes and
     edges to graph."""
     if penwidth_ratio is None:
-        penwidth_ratio = 30 / plan['Total Cost']
+        penwidth_ratio = 30 / max(plan['Total Cost'], 0.01)
     if node_name is None:
         node_name = 'node_0'
     node_label = plan['Node Type']
