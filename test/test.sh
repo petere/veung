@@ -11,6 +11,10 @@
 #
 # PGSRC  PostgreSQL source tree
 # PATH   Add PostgreSQL bin directory if necessary, and path to veung program
+#
+# An integer argument can optionally be passed, which limits the
+# output to plans with at least that many nodes, to weed out the
+# trivial plans.  (3 is a good start.)
 
 set -eux
 set -o pipefail
@@ -41,7 +45,7 @@ make -C "$PGSRC" installcheck
 pg_ctl stop -w
 
 cd "$workdir"
-python ../pg_csvlog_to_json.py < $PGDATA/pg_log/postgresql.csv
+python ../pg_csvlog_to_json.py "$@" < $PGDATA/pg_log/postgresql.csv
 for file in *.json; do
 	echo $file
 	veung -o - < $file | dot -Tpng -o ${file%.json}.png
