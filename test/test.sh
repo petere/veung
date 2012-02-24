@@ -26,6 +26,7 @@ rm -f "$workdir"/*.{json,png}
 
 initdb
 cat <<EOF >>$PGDATA/postgresql.conf
+fsync = off
 log_destination = 'csvlog'
 logging_collector = on
 log_filename = 'postgresql.log'
