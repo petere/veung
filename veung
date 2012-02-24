@@ -72,7 +72,7 @@ def tree_walker(graph, plan, node_name = None, penwidth_ratio = None):
     if node_name is None:
         node_name = 'node_0'
     node_label = plan['Node Type']
-    for field in ['Parent Relationship', 'Relation Name', 'Index Name', 'Total Cost']:
+    for field in ['Relation Name', 'Index Name', 'Total Cost']:
         if field in plan:
             node_label += '\\n%s: %s' % (field, plan[field])
     graph.add_node(node_name, label = node_label, shape = 'box')
@@ -80,7 +80,9 @@ def tree_walker(graph, plan, node_name = None, penwidth_ratio = None):
         for i, subplan in enumerate(plan['Plans']):
             child_node_name = '%s_%d' % (node_name, i)
             tree_walker(graph, subplan, child_node_name, penwidth_ratio)
-            graph.add_edge(node_name, child_node_name, penwidth=str(subplan['Total Cost'] * penwidth_ratio))
+            graph.add_edge(node_name, child_node_name,
+                           penwidth=str(subplan['Total Cost'] * penwidth_ratio),
+                           label=subplan.get('Parent Relationship'))
 
 
 if __name__ == '__main__':
